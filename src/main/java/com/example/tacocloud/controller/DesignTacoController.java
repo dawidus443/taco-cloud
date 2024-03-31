@@ -3,9 +3,11 @@ package com.example.tacocloud.controller;
 import com.example.tacocloud.model.Ingredient;
 import com.example.tacocloud.model.Ingredient.Type;
 import com.example.tacocloud.model.Taco;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +50,10 @@ public class DesignTacoController {
     }
 
     @PostMapping
-    public String processDesign(Taco taco){
+    public String processDesign(@Valid Taco taco, Errors errors){
+        if (errors.hasErrors()){
+            return "design";
+        }
         log.info("Taco project processing: " + taco);
         return "redirect:/orders/current";
     }
