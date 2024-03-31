@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmls="http://www.w3.org/1999/xhtml"
+      xmls:th="http://www.thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Taco Cloud App</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
+  <img th:src="@{/images/taco-shop.png}" />
+  <form method="POST" th:action="@{/orders}" th:object="${order}">
+    <h1>Order your taco!</h1>
+    <img src="@{images/taco-shop.png}">
+    <a href="@{/design}" id="another">Make next taco</a><br>
 
-</body>
+    <div th:if="${#fields.hasErrors()}">
+      <span class="validationError">
+        Delete errors and try again
+      </span>
+    </div>
+
+    <h3>Delivery address:</h3>
+
+    <label>Name</label>
+    <input type="text" th:field="*{name}">
+    <br>
+
+    <label>Last name</label>
+    <input type="text" th:field="*{lastName}">
+    <br>
+
+    <label>City</label>
+    <input type="text" th:field="*{city}">
+    <br>
+
+    <label>Street</label>
+    <input type="text" th:field="*{street}">
+    <br>
+
+    <label>Home number</label>
+    <input type="text" th:field="*{homeNumber}">
+    <br>
+
+    <label>Zip code</label>
+    <input type="text" th:field="*{zipCode}">
+    <br>
+
+    <label>Card number</label>
+    <input type="text" th:field="*{ccNumber}">
+    <br>
+
+    <label>Card expiration</label>
+    <input type="text" th:field="*{ccExpiration}">
+    <br>
+
+    <label>CVV</label>
+    <input type="text" th:field="*{ccCVV}">
+    <br>
+
+    <input type="submit" value="Make order">
+
+  </form>
+  </body>
 </html>
