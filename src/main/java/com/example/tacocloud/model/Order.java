@@ -20,9 +20,9 @@ public class Order {
     private String homeNumber;
     @NotBlank(message = "Providing zip code is mandatory.")
     private String zipCode;
-    @CreditCardNumber(message = "Credit card number is not correct")
+    @CreditCardNumber(message = "Credit card number is not correct (17  digits)")
     private String ccNumber;
-    @Pattern(regexp = "^(0[1-9]1[0-2])([\\/])([0-9][0-9])$",
+    @Pattern(regexp = "(0[1-9]|1[0-2])/(\\d{2})",
     message = "Input must be in MM/RR format")
     private String ccExpiration;
     @Digits(integer = 3, fraction = 0, message = "CCV number is not correct.")
